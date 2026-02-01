@@ -6,15 +6,27 @@
 
 ## Overview
 
-This design transforms the existing portfolio website into a beautiful, interactive timeline that weaves together academic and professional achievements in a unified narrative. The experience prioritizes elegant minimalism, smooth animations, and intuitive storytelling.
+This design transforms the existing portfolio website into a beautiful, interactive timeline that weaves together academic and professional achievements in a unified narrative. The experience prioritizes elegant minimalism enhanced with Oatly-inspired bold typography and strong visual accents, creating a professional yet distinctive portfolio that balances academic credibility with personality.
 
 ## Design Principles
 
 1. **Holistic narrative** - Blend professional milestones and academic achievements to show how they intersect
 2. **Scroll-driven storytelling** - Create an immersive experience that reveals content progressively as users scroll
-3. **Minimalist elegance** - Clean lines, generous whitespace, subtle animations, elegant typography
-4. **Content-first** - Let achievements speak for themselves without visual overwhelm
-5. **Accessible & performant** - Support all devices, respect reduced motion preferences, optimize performance
+3. **Minimalist elegance with bold accents** - Clean layout with Oatly-inspired strong typography, borders, and category badges
+4. **High contrast & clarity** - Bold headlines, strong borders, clear visual hierarchy
+5. **Content-first** - Let achievements speak for themselves, enhanced by purposeful design
+6. **Accessible & performant** - Support all devices, respect reduced motion preferences, optimize performance
+
+## Visual Inspiration: Oatly Elements
+
+Selective incorporation of Oatly's distinctive aesthetic:
+- **Bold condensed typography** - Impactful headlines that demand attention
+- **Strong borders** - 2-3px solid borders on cards for definition and structure
+- **Category badges** - Colored labels identifying entry types (Career, Publication, Award, etc.)
+- **High contrast** - Black borders and bold text against clean backgrounds
+- **Utilitarian clarity** - Straightforward, functional design without unnecessary decoration
+
+These elements add personality while maintaining professional credibility appropriate for an academic/research portfolio.
 
 ## User Experience Flow
 
@@ -102,17 +114,19 @@ Each entry type has unique visual markers:
 
 ### Typography System
 
-**Hierarchy**
-- Hero name: 48-72px, elegant serif or sophisticated sans-serif
-- Timeline dates: 12-14px, small caps or uppercase
-- Entry titles: 20-24px semibold
+**Hierarchy** (Oatly-inspired bold headlines)
+- Hero name: 48-72px, bold condensed sans-serif for impact
+- Entry titles: 24-28px bold/black weight, condensed for punch
+- Timeline dates: 12-14px, small caps or uppercase, monospace feel
 - Organizations: 16-18px medium weight, secondary color
-- Body text: 15-16px regular, line-height 1.6-1.7
+- Body text: 15-16px regular, line-height 1.6-1.7, clean sans-serif
 - Modal content: Similar hierarchy, optimized for reading
 
 **Font Choices**
-- Consider: Inter/Outfit for sans-serif, or Playfair Display/Crimson Pro for serif accents
-- Maintain existing font if it fits minimalist aesthetic
+- Headlines: Condensed bold sans-serif (e.g., Archivo Narrow, Barlow Condensed, or Inter Tight at 700+ weight)
+- Body: Inter or existing font for readability
+- Dates/labels: Monospace or tight condensed (e.g., JetBrains Mono, Space Mono)
+- Balance bold headlines for impact with clean body for professionalism
 
 ### Color System
 
@@ -124,15 +138,25 @@ Each entry type has unique visual markers:
 - Awards: Amber/gold (#F59E0B)
 - Presentations: Teal (#14B8A6)
 
-**Cards & Surfaces**
-- Light mode: White cards (#FFFFFF) with subtle shadow
-- Dark mode: Elevated dark surface (#1F2937)
+**Cards & Surfaces** (Oatly-inspired borders)
+- Light mode: White cards (#FFFFFF) with strong 2-3px black border (#000000)
+- Dark mode: Dark surface (#1F2937) with strong 2-3px light border (#E5E7EB)
+- Border style: Solid, clean lines (not rounded corners - keep sharp for Oatly feel)
+- Subtle inner shadow for depth (optional, keep minimal)
 - High contrast text for accessibility (WCAG AA minimum)
 
+**Category Badges** (Oatly-inspired)
+- Small colored rectangles in top-right corner of each card
+- Solid background color matching entry type
+- White or black text (depending on contrast)
+- Uppercase, bold, condensed font at 10-12px
+- Examples: "CAREER" (blue), "PUBLICATION" (green), "AWARD" (gold)
+- Border: 1-2px black outline for definition
+
 **Interactive States**
-- Hover: Subtle card lift (shadow increase)
-- Focus: Clear outline for keyboard navigation
-- Active: Slight scale or color shift
+- Hover: Border thickens slightly (2px → 3px) or color intensifies
+- Focus: Strong focus ring for keyboard navigation
+- Active: Slight border color shift to entry type color
 
 ### Spacing & Rhythm
 
