@@ -9,13 +9,15 @@ interface ParallelTimelinesProps {
   careerEntries: TimelineEntry[];
   publicationEntries: TimelineEntry[];
   onEntryClick: (entry: TimelineEntry) => void;
+  selectedEntryId?: string;
 }
 
 export default function ParallelTimelines({
   educationEntries,
   careerEntries,
   publicationEntries,
-  onEntryClick
+  onEntryClick,
+  selectedEntryId
 }: ParallelTimelinesProps) {
 
   const timelineColumns = [
@@ -42,6 +44,13 @@ export default function ParallelTimelines({
   return (
     <>
       <section className="relative py-20 px-6 md:px-12 lg:px-16 xl:px-24">
+        {/* Section number */}
+        <div className="absolute right-0 top-8 opacity-5 dark:opacity-10 pointer-events-none">
+          <span className="font-headline text-[16rem] md:text-[20rem] font-black leading-none text-gray-900 dark:text-white">
+            04
+          </span>
+        </div>
+
         <div className="w-full mx-auto">
           {/* Section header */}
           <div className="text-center mb-20">
@@ -101,6 +110,7 @@ export default function ParallelTimelines({
                           entry={entry}
                           onOpenModal={() => onEntryClick(entry)}
                           showTimeline={false}
+                          isSelected={selectedEntryId === entry.id}
                         />
                       </div>
                     </div>

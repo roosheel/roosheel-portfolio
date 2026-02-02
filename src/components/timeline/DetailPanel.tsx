@@ -3,11 +3,32 @@
 import { useEffect } from 'react';
 import { TimelineEntry, EntryType } from '@/types/timeline';
 import { X, ExternalLink } from 'lucide-react';
+import DateRange from './DateRange';
 
 interface DetailPanelProps {
   entry: TimelineEntry | null;
   onClose: () => void;
 }
+
+const highlightAuthorName = (text: string) => {
+  // Match variations: "Patel RS", "Patel R", with optional comma/period after
+  const parts = text.split(/(\bPatel\s+R[S]?\b[,.]?)/g);
+
+  return (
+    <>
+      {parts.map((part, index) => {
+        if (/\bPatel\s+R[S]?\b/.test(part)) {
+          return (
+            <strong key={index} className="font-bold text-gray-900 dark:text-white">
+              {part}
+            </strong>
+          );
+        }
+        return <span key={index}>{part}</span>;
+      })}
+    </>
+  );
+};
 
 const typeConfig: Record<EntryType, {
   bgColor: string;
@@ -85,7 +106,7 @@ export default function DetailPanel({ entry, onClose }: DetailPanelProps) {
                   </p>
                 )}
                 <div className="flex flex-wrap items-center gap-3 text-sm font-mono text-gray-600 dark:text-gray-400">
-                  <span className="font-bold">{entry.displayDate}</span>
+                  <DateRange dateString={entry.displayDate} />
                   {entry.location && (
                     <>
                       <span>•</span>
@@ -159,7 +180,7 @@ export default function DetailPanel({ entry, onClose }: DetailPanelProps) {
                     Authors
                   </h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed bg-gray-50 dark:bg-gray-900 p-4 border-l-4" style={{ borderColor: `rgb(${config.rgb})` }}>
-                    {entry.metadata.authors}
+                    {highlightAuthorName(entry.metadata.authors)}
                   </p>
                 </div>
               )}
@@ -212,7 +233,7 @@ export default function DetailPanel({ entry, onClose }: DetailPanelProps) {
           {(entry.type === 'award' || entry.type === 'presentation') && entry.metadata?.description && (
             <div>
               <p className="text-base text-gray-700 dark:text-gray-300 leading-relaxed bg-gray-50 dark:bg-gray-900 p-6 border-l-4" style={{ borderColor: `rgb(${config.rgb})` }}>
-                {entry.metadata.description}
+                {entry.type === 'presentation' ? highlightAuthorName(entry.metadata.description) : entry.metadata.description}
               </p>
             </div>
           )}

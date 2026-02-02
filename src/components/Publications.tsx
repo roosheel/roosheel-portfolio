@@ -7,6 +7,26 @@ import { Search, ExternalLink } from 'lucide-react';
 
 const ITEMS_PER_PAGE = 10;
 
+const highlightAuthorName = (authors: string) => {
+  // Match variations: "Patel RS", "Patel R", with optional comma/period after
+  const parts = authors.split(/(\bPatel\s+R[S]?\b[,.]?)/g);
+
+  return (
+    <>
+      {parts.map((part, index) => {
+        if (/\bPatel\s+R[S]?\b/.test(part)) {
+          return (
+            <strong key={index} className="font-bold text-gray-900 dark:text-gray-100">
+              {part}
+            </strong>
+          );
+        }
+        return <span key={index}>{part}</span>;
+      })}
+    </>
+  );
+};
+
 export default function Publications() {
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
@@ -58,15 +78,15 @@ export default function Publications() {
         {paginatedPublications.map((pub, index) => (
           <div
             key={startIndex + index}
-            className="border-l-4 border-blue-500 pl-4 py-2 hover:bg-gray-50 dark:hover:bg-dark-surface-light transition-colors rounded-r"
+            className="border-l-4 border-blue-500 pl-4 py-3 hover:bg-gray-50 dark:hover:bg-dark-surface-light transition-colors rounded-r"
           >
             <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">
-              {pub.authors}
+              {highlightAuthorName(pub.authors)}
             </p>
-            <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100 mb-1">
+            <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100 mb-2">
               {pub.title}
             </h3>
-            <div className="flex flex-wrap items-center gap-2 text-sm">
+            <div className="flex flex-wrap items-center gap-2 text-sm mb-3">
               <span className="text-blue-600 dark:text-blue-400 font-medium">
                 {pub.journal}
               </span>
@@ -86,6 +106,14 @@ export default function Publications() {
                 </>
               )}
             </div>
+            {pub.impact && (
+              <div className="mt-2 pt-2 border-t border-gray-200 dark:border-gray-700">
+                <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                  <span className="font-semibold text-gray-900 dark:text-gray-100">Research Impact: </span>
+                  {pub.impact}
+                </p>
+              </div>
+            )}
           </div>
         ))}
       </div>

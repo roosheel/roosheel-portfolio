@@ -8,6 +8,26 @@ interface EntryCardProps {
   onClick: () => void;
 }
 
+const highlightAuthorName = (text: string) => {
+  // Match variations: "Patel RS", "Patel R", with optional comma/period after
+  const parts = text.split(/(\bPatel\s+R[S]?\b[,.]?)/g);
+
+  return (
+    <>
+      {parts.map((part, index) => {
+        if (/\bPatel\s+R[S]?\b/.test(part)) {
+          return (
+            <strong key={index} className="font-bold text-gray-900 dark:text-white">
+              {part}
+            </strong>
+          );
+        }
+        return <span key={index}>{part}</span>;
+      })}
+    </>
+  );
+};
+
 const typeConfig: Record<EntryType, {
   color: string;
   bgColor: string;
@@ -114,7 +134,11 @@ export default function EntryCard({ entry, onClick }: EntryCardProps) {
               {entry.type === 'career' || entry.type === 'education' ? (
                 <span className="inline-block mr-2">•</span>
               ) : null}
-              {item}
+              {entry.type === 'publication' || entry.type === 'presentation' ? (
+                highlightAuthorName(item)
+              ) : (
+                item
+              )}
             </p>
           ))}
         </div>

@@ -2,10 +2,12 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { TimelineEntry, EntryType } from '@/types/timeline';
+import DateRange from './DateRange';
 
 interface HorizontalTimelineProps {
   entries: TimelineEntry[];
   onEntryClick: (entry: TimelineEntry) => void;
+  selectedEntryId?: string;
 }
 
 const typeColors: Record<EntryType, { bg: string; border: string; label: string; rgb: string }> = {
@@ -16,7 +18,7 @@ const typeColors: Record<EntryType, { bg: string; border: string; label: string;
   presentation: { bg: 'bg-teal-500', border: 'border-teal-500', label: 'Presentation', rgb: '20, 184, 166' }
 };
 
-export default function HorizontalTimeline({ entries, onEntryClick }: HorizontalTimelineProps) {
+export default function HorizontalTimeline({ entries, onEntryClick, selectedEntryId }: HorizontalTimelineProps) {
   const [hoveredEntry, setHoveredEntry] = useState<TimelineEntry | null>(null);
   const [mousePosition, setMousePosition] = useState<{ x: number; y: number } | null>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -264,7 +266,7 @@ export default function HorizontalTimeline({ entries, onEntryClick }: Horizontal
                     </span>
                   )}
                   <span className="text-sm font-mono font-semibold text-gray-900 dark:text-white">
-                    {hoveredEntry.displayDate}
+                    <DateRange dateString={hoveredEntry.displayDate} />
                   </span>
                 </div>
 
@@ -293,6 +295,13 @@ export default function HorizontalTimeline({ entries, onEntryClick }: Horizontal
         ref={sectionRef}
         className="relative py-20 px-6 md:px-12 lg:px-16 xl:px-24 bg-gradient-to-b from-white via-gray-50 to-white dark:from-gray-900 dark:via-gray-950 dark:to-gray-900 border-y-4 border-black dark:border-white overflow-hidden"
       >
+        {/* Section number */}
+        <div className="absolute left-0 top-8 opacity-5 dark:opacity-10 pointer-events-none">
+          <span className="font-headline text-[16rem] md:text-[20rem] font-black leading-none text-gray-900 dark:text-white">
+            03
+          </span>
+        </div>
+
         {/* Noise texture overlay for depth */}
         <div
           className="absolute inset-0 opacity-[0.015] dark:opacity-[0.03] pointer-events-none"
@@ -387,6 +396,7 @@ export default function HorizontalTimeline({ entries, onEntryClick }: Horizontal
 
                 const config = typeColors[entry.type];
                 const isHovered = hoveredEntry?.id === entry.id;
+                const isSelected = selectedEntryId === entry.id;
                 const highlighted = isHighlighted(entry.type);
 
                 // Vertical offsets based on type
@@ -427,8 +437,8 @@ export default function HorizontalTimeline({ entries, onEntryClick }: Horizontal
                       style={{
                         left: `${startPosition}%`,
                         width: `${endPosition - startPosition}%`,
-                        zIndex: isHovered ? 25 : 10,
-                        opacity: isVisible ? (highlighted ? 1 : 0.2) : 0,
+                        zIndex: isSelected ? 30 : (isHovered ? 25 : 10),
+                        opacity: isVisible ? (highlighted ? (isSelected ? 1 : 1) : 0.2) : 0,
                         transform: isVisible ? 'scale(1)' : 'scale(0.8)',
                         transition: `opacity 0.6s ease-out ${animationDelay}, transform 0.6s ease-out ${animationDelay}`
                       }}
@@ -441,9 +451,9 @@ export default function HorizontalTimeline({ entries, onEntryClick }: Horizontal
                           left: 0,
                           right: 0,
                           height: `${6 * magnificationScale}px`,
-                          backgroundColor: `rgba(${config.rgb}, ${isHovered ? 0.9 : 0.7})`,
-                          border: `${isHovered ? 2 : 1.5}px solid`,
-                          borderColor: isHovered ? 'rgb(0, 0, 0)' : `rgba(${config.rgb}, 1)`,
+                          backgroundColor: `rgba(${config.rgb}, ${isSelected ? 1 : (isHovered ? 0.9 : 0.7)})`,
+                          border: `${isSelected ? 3 : (isHovered ? 2 : 1.5)}px solid`,
+                          borderColor: (isSelected || isHovered) ? 'rgb(0, 0, 0)' : `rgba(${config.rgb}, 1)`,
                           transform: `translateY(-50%)`,
                           transition: mousePosition ? 'all 0.15s ease-out' : 'all 0.3s ease-out',
                           boxShadow: isHovered
@@ -498,7 +508,7 @@ export default function HorizontalTimeline({ entries, onEntryClick }: Horizontal
                     className="absolute top-1/2"
                     style={{
                       left: `${position}%`,
-                      zIndex: isHovered ? 25 : 10,
+                      zIndex: isSelected ? 30 : (isHovered ? 25 : 10),
                       opacity: isVisible ? (highlighted ? 1 : 0.2) : 0,
                       transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
                       transition: `opacity 0.5s ease-out ${animationDelay}, transform 0.5s ease-out ${animationDelay}`
@@ -531,9 +541,11 @@ export default function HorizontalTimeline({ entries, onEntryClick }: Horizontal
                     >
                       {/* Main dot */}
                       <div
-                        className={`relative w-6 h-6 rounded-full border-[3px] border-black dark:border-white ${config.bg} transition-all duration-300`}
+                        className={`relative w-6 h-6 rounded-full ${isSelected ? 'border-[4px]' : 'border-[3px]'} border-black dark:border-white ${config.bg} transition-all duration-300`}
                         style={{
-                          boxShadow: isHovered
+                          boxShadow: isSelected
+                            ? `0 0 40px rgba(${config.rgb}, 1), 0 0 80px rgba(${config.rgb}, 0.6)`
+                            : isHovered
                             ? `0 0 30px rgba(${config.rgb}, 0.8), 0 0 60px rgba(${config.rgb}, 0.4)`
                             : `0 0 10px rgba(${config.rgb}, 0.3)`
                         }}

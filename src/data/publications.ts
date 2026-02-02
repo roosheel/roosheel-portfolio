@@ -5,6 +5,7 @@ export interface Publication {
   year: number;
   doi?: string;
   pmid?: string;
+  impact?: string;
 }
 
 export const publications: Publication[] = [
@@ -15,6 +16,7 @@ export const publications: Publication[] = [
     year: 2025,
     doi: '10.1126/scitranslmed.adx5758',
     pmid: '40802739',
+    impact: 'This work demonstrates that a minimal set of 10 interferon-stimulated genes (ISGs), delivered via mRNA, can provide broad-spectrum protection against diverse viral pathogens including influenza, SARS-CoV-2, and Zika virus—mimicking the natural antiviral state found in ISG15-deficient individuals. This discovery enables development of a "universal" prophylactic antiviral that could be rapidly deployed during emerging viral outbreaks to protect high-risk populations (healthcare workers, immunocompromised patients, nursing home residents) regardless of the specific virus, eliminating the need to wait for virus-specific vaccines or therapeutics and providing a crucial first-line defense against future pandemics.',
   },
   {
     authors: 'Gruber C, Randolph HE, Patel R, Ramba M, Calzoni E, Huang LH, Levy J, Buta S, Lee A, Sazeides C, Prue Z, van Konijnenburg DPH, Chinn IK, Pedroza LA, Lupski JR, Schmitt EG, Cooper MA, Puel A, Peng X, Boisson-Dupuis S, Bustamante J, Okada S, Martin-Fernandez M, Orange JS, Casanova JL, Milner JD, Bogunovic D',
@@ -23,14 +25,16 @@ export const publications: Publication[] = [
     year: 2025,
     doi: '10.1038/s41586-024-08346-4',
     pmid: '39743591',
+    impact: 'This research reveals that autosomal random monoallelic expression (aRMAE)—where immune cells randomly express only one copy of certain genes—explains why individuals carrying the same disease-causing mutation can have drastically different clinical outcomes, from severe illness to complete health. This finding fundamentally changes genetic counseling and clinical decision-making by demonstrating that penetrance of autosomal dominant immune disorders depends not just on having a pathogenic variant, but on which allele (mutant vs. normal) is preferentially expressed in immune cells, allowing clinicians to better predict disease risk, tailor monitoring strategies, and avoid unnecessary interventions for mutation carriers who may never develop symptoms.',
   },
   {
-    authors: 'Akalu YT, Patel RS, Taft J, Canas-Arranz R, Richardson A, Buta S, Martin-Fernandez M, Sazeides C, Pearl RL, Mainkar G, Kurland AP, Geltman R, Rosberger H, Kang DD, Kurian AA, Kaur K, Altman J, Dong Y, Johnson JR, Zhangi L, Lim JK, Albrecht RA, García-Sastre A, Rosenberg BR, Bogunovic D',
-    title: 'Broad-spectrum RNA antiviral inspired by ISG15 -/- deficiency',
-    journal: 'bioRxiv (Preprint)',
+    authors: 'Horesh ME, Martin-Fernandez M, Gruber C, Buta S, Richardson A, Maccari ME, van Aerde K, Zhang P, Patel R, Banday AR, Rosenberg BR, Bogunovic D, et al.',
+    title: 'Individuals with JAK1 variants are affected by syndromic features encompassing autoimmunity, atopy, colitis, and dermatitis',
+    journal: 'Journal of Experimental Medicine',
     year: 2024,
-    doi: '10.1101/2024.06.24.600468',
-    pmid: '38979204',
+    doi: '10.1084/jem.20232387',
+    pmid: '38563820',
+    impact: 'This work identifies JAK1 gain-of-function mutations as a significant cause of a previously unrecognized immune syndrome (JAACD) affecting 59 individuals with autoimmunity, atopy, colitis, and dermatitis, demonstrating that these "rare" mutations may be more common than previously thought. The findings enable genetic diagnosis of patients with this constellation of symptoms and provide a rational therapeutic approach using existing JAK inhibitors like baricitinib, which showed clinical improvement in treated patients.',
   },
   {
     authors: 'Torre D, Fstkchyan YS, Ho JSY, Cheon Y, Patel RS, Degrace EJ, Mzoughi S, Schwarz M, Mohammed K, Seo JS, Romero-Bueno R, Demircioglu D, Hasson D, Tang W, Mahajani SU, Campisi L, Zheng S, Song WS, Wang YC, Shah H, Francoeur N, Soto J, Salfati Z, Weirauch MT, Warburton P, Beaumont K, Smith ML, Mulder L, Villalta SA, Kessenbrock K, Jang C, Lee D, De Rubeis S, Cobos I, Tam O, Hammell MG, Seldin M, Shi Y, Basu U, Sebastiano V, Byun M, Sebra R, Rosenberg BR, Benner C, Guccione E, Marazzi I',
@@ -39,6 +43,7 @@ export const publications: Publication[] = [
     year: 2023,
     doi: '10.1016/j.molcel.2023.10.036',
     pmid: '37995687',
+    impact: 'This work reveals that nuclear RNA degradation machinery (the exosome and Integrator) functions as a critical quality-control mechanism that prevents endogenous retrovirus activation and maintains cell identity by selectively degrading nascent transcripts in open chromatin regions. The discovery that disrupting RNA catabolism causes preferential loss of long gene expression (gene-length asymmetry) provides a mechanistic explanation for why exosome mutations cause neurodegenerative diseases and suggests new therapeutic targets for conditions involving aberrant cell dedifferentiation or ERV reactivation, while offering researchers a chemical approach to generate totipotent-like cells for regenerative medicine applications.',
   },
   {
     authors: 'Malle L, Patel RS, Martin-Fernandez M, Stewart OJ, Philippot Q, Buta S, Richardson A, Barcessat V, Taft J, Bastard P, Samuels J, Mircher C, Rebillat AS, Maillebouis L, Vilaire-Meunier M, Tuballes K, Rosenberg BR, Trachtman R, Casanova JL, Notarangelo LD, Gnjatic S, Bush D, Bogunovic D',
@@ -47,6 +52,7 @@ export const publications: Publication[] = [
     year: 2023,
     doi: '10.1038/s41586-023-05736-y',
     pmid: '36813963',
+    impact: 'This study identifies the mechanistic triad underlying autoimmunity in Down syndrome—persistent elevation of inflammatory cytokines (particularly IL-6), chronic CD4 T cell hyperactivation via STAT3 signaling, and expansion of autoreactive CD11c+ B cells that produce organ-specific autoantibodies. These findings enable precision medicine approaches using targeted IL-6 or JAK inhibitors as preventive therapy for high-risk DS individuals before autoimmune disease onset, support risk stratification based on cytokine profiles, and justify comprehensive multi-organ screening protocols for thyroid, pancreatic, and gastrointestinal autoimmune conditions rather than reactive testing alone.',
   },
   {
     authors: 'Cohen P, DeGrace EJ, Danziger O, Patel RS, Barrall EA, Bobrowski T, Kehrer T, Cupic A, Miorin L, García-Sastre A, Rosenberg BR',
@@ -55,6 +61,7 @@ export const publications: Publication[] = [
     year: 2023,
     doi: '10.1128/spectrum.00776-23',
     pmid: '37676044',
+    impact: 'This work establishes a validated single-cell RNA sequencing methodology (scCoVseq) that unambiguously distinguishes SARS-CoV-2 subgenomic mRNAs from genomic RNA, overcoming previous technical limitations that classified most viral reads as "ambiguous" and excluded them from analysis. This advance enables researchers to precisely track viral gene expression dynamics at single-cell resolution across different cell types and infection stages, facilitating better characterization of viral variants, identification of infected versus bystander cells in heterogeneous samples, and more accurate assessment of host-virus interactions to inform antiviral drug development and vaccine strategies.',
   },
   {
     authors: 'Prescott RA, Pankow AP, de Vries M, Crosse KM, Patel RS, Alu M, Loomis C, Torres V, Koralov S, Ivanova E, Dittmann M, Rosenberg BR',
@@ -63,6 +70,7 @@ export const publications: Publication[] = [
     year: 2023,
     doi: '10.1186/s12931-023-02514-2',
     pmid: '37635251',
+    impact: 'This study validates that BCi-NS1.1 immortalized airway cell lines accurately replicate the cellular composition and functional responses of primary human airway epithelium at single-cell resolution, enabling researchers to confidently use these cost-effective, genetically manipulable cell lines for large-scale respiratory disease studies, drug screening, and infectious disease research. By providing a standardized, reproducible alternative to donor-dependent primary cells with extended passage capacity (up to 40 passages), this work enables more ambitious genetic engineering experiments in cystic fibrosis, COPD, and viral pathogenesis research that would be impractical with limited primary cell resources.',
   },
   {
     authors: 'Danziger O, Patel RS, DeGrace EJ, Rosen MR, Rosenberg BR',
@@ -71,6 +79,16 @@ export const publications: Publication[] = [
     year: 2022,
     doi: '10.1371/journal.ppat.1010464',
     pmid: '35421191',
+    impact: 'This work identifies OAS1 as a critical antiviral defense factor against SARS-CoV-2 through its catalytic activation of the RNaseL pathway, providing molecular explanation for why certain OAS1 genetic variants and elevated plasma OAS1 levels correlate with reduced COVID-19 hospitalization and mortality in clinical studies. These findings enable development of genetic risk stratification tools to identify vulnerable individuals requiring earlier intervention and inform rational therapeutic strategies that enhance innate antiviral immunity through the OAS1/RNaseL pathway rather than targeting the rapidly-evolving viral proteins directly.',
+  },
+  {
+    authors: 'Jurczyszak D, Manganaro L, Buta S, Gruber C, Martin-Fernandez M, Taft J, Patel RS, Cipolla M, Alshammary H, Mulder LCF, Sachidanandam R, Bogunovic D, Simon V',
+    title: 'ISG15 deficiency restricts HIV-1 infection',
+    journal: 'PLoS Pathogens',
+    year: 2022,
+    doi: '10.1371/journal.ppat.1010405',
+    pmid: '35333911',
+    impact: 'This work demonstrates the counterintuitive finding that ISG15 deficiency, rather than increasing viral susceptibility, actually enhances resistance to HIV-1 infection through persistently elevated interferon-stimulated gene expression. These findings challenge conventional understanding of antiviral immunity and could inform novel HIV-1 prevention or treatment strategies by mimicking the protective immune state seen in ISG15-deficient individuals, potentially through therapeutic modulation of ISG expression without requiring ISG15 itself.',
   },
   {
     authors: 'Nilsson-Payant BE, Uhl S, Grimont A, Doane AS, Cohen P, Patel RS, Higgins CA, Acklin JA, Bram Y, Chandar V, Blanco-Melo D, Panis M, Lim JK, Elemento O, Schwartz RE, Rosenberg BR, Chandwani R, tenOever BR',
@@ -79,6 +97,52 @@ export const publications: Publication[] = [
     year: 2021,
     doi: '10.1128/JVI.01257-21',
     pmid: '34523966',
+    impact: 'This study reveals that SARS-CoV-2 uniquely co-opts the NF-κB inflammatory pathway for its own replication while simultaneously suppressing interferon responses, explaining both the virus\'s unusual replication requirements and the excessive cytokine production characteristic of severe COVID-19. By demonstrating that NF-κB inhibitors can simultaneously block viral replication and reduce inflammatory responses in vitro, this work establishes a therapeutic rationale for targeting NF-κB signaling in COVID-19 treatment, though the pathway\'s essential cellular functions necessitate careful drug development to achieve antiviral effects without compromising normal immunity and cell survival.',
+  },
+  {
+    authors: 'Taft J, Markson M, Legarda D, Patel R, Chan M, Mirza H, Martin-Fernandez M, Malle L, Pronounced N, Wong T, Gruber C, Lim JK, Pacis A, Ai R, Kumasaka N, Jiang S, Luo Y, Ruan J, Fu Y, Zhang B, Gaffney DJ, Franke A, Rosenberg BR, Huh JR, Artyomov MN, Glickman JN, Vyas JM, Henao-Mejia J, Pasparakis M, Blumberg RS, Bogunovic D, Lassen KG, Xavier RJ',
+    title: 'Human TBK1 deficiency leads to autoinflammation driven by TNF-induced cell death',
+    journal: 'Cell',
+    year: 2021,
+    doi: '10.1016/j.cell.2021.07.026',
+    pmid: '34363755',
+    impact: 'This study reveals that humans can survive without TBK1 (unlike mice where it\'s embryonically lethal) but develop severe autoinflammatory disease driven by excessive TNF-induced cell death rather than impaired antiviral immunity. The discovery that anti-TNF therapy successfully treats TBK1-deficient patients provides immediate clinical benefit for this rare condition and fundamentally advances our understanding of how TBK1 regulates inflammatory versus antiviral pathways in humans, informing treatment decisions for autoinflammatory diseases.',
+  },
+  {
+    authors: 'Kaji DA, Montero AM, Patel R, Huang AH',
+    title: 'Transcriptional profiling of mESC-derived tendon and fibrocartilage cell fate switch',
+    journal: 'Nature Communications',
+    year: 2021,
+    doi: '10.1038/s41467-021-24535-5',
+    pmid: '34244516',
+    impact: 'This study identifies retinoic acid signaling as the molecular switch controlling whether stem cells differentiate into tendon versus fibrocartilage tissue, achieving 90% differentiation efficiency with cells matching native tissue properties. These findings provide the molecular roadmap and high-efficiency protocols needed to engineer replacement tissues for tendon, ligament, and fibrocartilage injuries—which currently have limited treatment options and poor natural healing capacity—advancing regenerative medicine approaches for orthopedic applications.',
+  },
+  {
+    authors: 'Tanaka S, Nelson G, Olson CA, Buzko O, Higashide W, Shin A, Gonzalez M, Taft J, Patel R, Buta S, Ramanathan R, Mire CE, Dobias NS, Gala RP, Jangra RK, De Marco A, Chandran K, Geisbert TW, Bogunovic D, Almo SC, Krammer F, Bhardwaj N, Lai JR',
+    title: 'An ACE2 Triple Decoy that neutralizes SARS-CoV-2 shows enhanced affinity for virus variants',
+    journal: 'Scientific Reports',
+    year: 2021,
+    doi: '10.1038/s41598-021-91809-9',
+    pmid: '34140558',
+    impact: 'The ACE2 Triple Decoy offers a variant-resistant therapeutic strategy against SARS-CoV-2 with inherent protection from viral escape, since mutations allowing viral evasion would simultaneously eliminate the virus\'s ability to infect cells. This provides a critical alternative to antibody-based therapies when emerging variants compromise vaccine and monoclonal antibody efficacy, with enhanced neutralization capacity (15-fold improvement) and maintained effectiveness against multiple variants including those with E484K and N501Y mutations.',
+  },
+  {
+    authors: 'Malle L, Bastard P, Martin-Nalda A, Figueras Nart I, Rebillat AS, Tuballes K, Mirabal-Beltran R, Rosenberg BR, Trachtman R, Philippot Q, Grimbacher B, Puel A, Casanova JL, Notarangelo LD, Gnjatic S, Mircher C, Merad M, Bogunovic D',
+    title: 'Atypical Inflammatory Syndrome Triggered by SARS-CoV-2 in Infants with Down Syndrome',
+    journal: 'Journal of Clinical Immunology',
+    year: 2021,
+    doi: '10.1007/s10875-021-01053-7',
+    pmid: '34089457',
+    impact: 'This study reveals that children with Down syndrome have a pre-existing inflammatory state that predisposes them to severe, atypical COVID-19 complications (prolonged MIS-C), establishing DS as an inborn error of immunity requiring special pandemic protections. Clinicians can now better identify DS patients as a high-risk group requiring prioritized vaccination, closer monitoring during infections, and potentially tailored treatment approaches beyond standard MIS-C protocols that showed limited effectiveness in these cases.',
+  },
+  {
+    authors: 'Tomlinson JE, Wolfisberg R, Fahnøe U, Patel RS, Trivedi S, Sharma H, Dark MJ, Cullinane A, Chambers TM, Stieler Stewart AL, Rosenberg BR, Van de Walle GR, Divers TJ, Dubovi EJ, Scheel TKH, Rice CM, Tennant BC, Kapoor A',
+    title: 'Pathogenesis, MicroRNA-122 Gene-Regulation, and Protective Immune Responses After Acute Equine Hepacivirus Infection',
+    journal: 'Hepatology',
+    year: 2021,
+    doi: '10.1002/hep.31839',
+    pmid: '33713356',
+    impact: 'This work establishes equine hepacivirus as a physiologically relevant animal model for human hepatitis C virus (HCV), demonstrating that natural infection induces protective immunity and viral clearance—validating that an HCV vaccine preventing chronic infection is achievable. The discovery that viral infection functionally depletes liver miR-122 levels (detectable in serum as a sensitive biomarker) provides mechanistic insights into HCV-induced liver damage and hepatocellular carcinoma risk, informing both diagnostic strategies and therapeutic interventions targeting miR-122 pathways.',
   },
   {
     authors: 'Patel RS, Tomlinson JE, Divers TJ, Van de Walle GR, Rosenberg BR',
@@ -87,6 +151,7 @@ export const publications: Publication[] = [
     year: 2021,
     doi: '10.1186/s12915-020-00947-5',
     pmid: '33482825',
+    impact: 'This work establishes horses as an accessible model system for studying T-bet+ B cells, a rare immune population in healthy humans typically associated with chronic infection and inflammation, enabling researchers to investigate their normal biology using readily available equine blood samples. The single-cell atlas provides veterinarians with baseline immune cell frequencies for diagnosing equine diseases and demonstrates how single-cell sequencing can characterize immune systems in non-traditional research organisms, expanding comparative immunology beyond mice and humans.',
   },
   {
     authors: 'Miorin L, Kehrer T, Sanchez-Aparicio MT, Zhang K, Cohen P, Patel RS, Cupic A, Makio T, Mei M, Moreno E, Danziger O, White KM, Rathnasinghe R, Uccellini M, Gao S, Aydillo T, Mena I, Yin X, Martin-Sancho L, Krogan NJ, Chanda SK, Schotsaert M, Wozniak RW, Ren Y, Rosenberg BR, Fontoura BMA, García-Sastre A',
@@ -95,6 +160,7 @@ export const publications: Publication[] = [
     year: 2020,
     doi: '10.1073/pnas.2016650117',
     pmid: '33097660',
+    impact: 'This study reveals that SARS-CoV-2\'s Orf6 protein blocks interferon signaling by hijacking the Nup98 nuclear pore protein to prevent antiviral STAT transcription factors from entering the nucleus, explaining why COVID-19 patients often fail to respond to interferon therapy. The discovery of this specific Orf6-Nup98 interaction provides a concrete drug target for developing therapeutics that could restore the body\'s interferon response during SARS-CoV-2 infection, potentially improving treatment outcomes when combined with existing antivirals.',
   },
   {
     authors: 'Gruber CN, Patel RS, Trachtman R, Lepow L, Amanat F, Krammer F, Wilson KM, Onel K, Geanon D, Tuballes K, Patel M, Mouskas K, O\'Donnell T, Merritt E, Simons NW, Barcessat V, Del Valle DM, Udondem S, Kang G, Gangadharan S, Ofori-Amanfo G, Laserson U, Rahman A, Kim-Schulze S, Charney AW, Gnjatic S, Gelb BD, Merad M, Bogunovic D',
@@ -103,6 +169,25 @@ export const publications: Publication[] = [
     year: 2020,
     doi: '10.1016/j.cell.2020.09.016',
     pmid: '32991843',
+    impact: 'This work identified the first comprehensive immune signature of MIS-C, showing that affected children have elevated IL-6, IL-18, and specific chemokines along with autoantibodies, distinguishing this syndrome from acute pediatric COVID-19 and validating the rapid use of IL-6 receptor blockers like tocilizumab for treatment. The identified biomarker panel enables earlier clinical diagnosis of MIS-C in children presenting with fever and inflammation, allowing physicians to initiate life-saving immunomodulatory therapy before multi-organ complications develop.',
+  },
+  {
+    authors: 'Pacella I, Grimaldi A, Piconese S, Procaccini C,Erspamer L, Marotta R, Tuosto L, Accapezzato D, Barnaba V, Matarese G, Quintarelli C, Locatelli F, Patel RS, Bogunovic D, Picard C, Casanova JL, Rossi P, Marasco E, Andreoni M, Sarmati L, Weisz A, Tripodi M, Camisa B, Gentner B, Naldini L, Koliesnik IO, Ivanov II, Vignali DAA, Sher A, Fimia GM, Jouanguy E, Notarangelo LD, Mazzoni A, Cosmi L, Liotta F, Annunziato F, Federici M, Larocca LM, Piacentini M, Colizzi V, Sesti G, Tramontano A, Cancrini C, Bacchetta R, Aiuti A',
+    title: 'ISG15 protects human Tregs from interferon alpha-induced contraction in a cell-intrinsic fashion',
+    journal: 'Clinical & Translational Immunology',
+    year: 2020,
+    doi: '10.1002/cti2.1221',
+    pmid: '33376595',
+    impact: 'This work demonstrates that ISG15 protects regulatory T-cells from interferon-induced depletion, explaining why some patients maintain immune homeostasis during interferon therapy while others develop autoimmune complications. ISG15 expression levels can serve as a predictive biomarker for interferon therapy outcomes in hepatitis C and potentially guide treatment decisions in autoimmune diseases like lupus, while opening therapeutic avenues for modulating this pathway to preserve immune regulation in inflammatory conditions.',
+  },
+  {
+    authors: 'Harman RM, Patel RS, Fan JC, Park JE, Rosenberg BR, Van de Walle GR',
+    title: 'Single-cell RNA sequencing of equine mesenchymal stromal cells from primary donor-matched tissue sources reveals functional heterogeneity',
+    journal: 'Stem Cell Research & Therapy',
+    year: 2020,
+    doi: '10.1186/s13287-020-02043-5',
+    pmid: '33276815',
+    impact: 'This study reveals that mesenchymal stromal cells (MSCs) from different tissue sources (adipose, bone marrow, blood) have distinct functional properties in immune modulation and cell migration, with specific molecular markers like JAM2 and CXCL6 driving these differences. These findings enable clinicians to rationally select optimal MSC tissue sources and screen cell populations for specific therapeutic properties, potentially improving efficacy of MSC-based regenerative therapies for diverse clinical applications from wound healing to immune disorders.',
   },
   {
     authors: 'Gonzalez-Rivera C, Khara P, Awad D, Patel R, Li YG, Bogisch M, Christie PJ',
@@ -111,6 +196,7 @@ export const publications: Publication[] = [
     year: 2018,
     doi: '10.1111/mmi.14141',
     pmid: '30264928',
+    impact: 'This work reveals that bacterial conjugation systems use multiple attachment strategies beyond pili formation, with TraC and Pep proteins creating alternative surface-displayed adhesion mechanisms that maximize plasmid transfer efficiency. Understanding these pilus-independent transfer pathways informs strategies to combat antibiotic resistance spread, as resistance genes commonly propagate via conjugative plasmids, and provides molecular targets for developing therapeutics that block horizontal gene transfer between pathogens.',
   },
   {
     authors: 'Gordon JE, Costa TRD, Patel RS, Gonzalez-Rivera C, Sarkar MK, Orlova EV, Waksman G, Christie PJ',
@@ -118,6 +204,7 @@ export const publications: Publication[] = [
     journal: 'Molecular Microbiology',
     year: 2017,
     doi: '10.1111/mmi.13734',
+    impact: 'By demonstrating that outer membrane components from phylogenetically diverse bacterial secretion systems are structurally interchangeable while maintaining DNA transfer capability, this study establishes the modular architecture and evolutionary conservation of type IV secretion machines. This knowledge enables rational design of engineered secretion systems for biotechnology applications, facilitates development of synthetic biology tools for controlled gene transfer, and informs therapeutic strategies targeting pathogenic secretion in Agrobacterium plant infections and Bordetella pertussis toxin delivery.',
   },
   {
     authors: 'Patel RS, Lessor LE, Hernandez AC, Everett GFK',
@@ -126,5 +213,6 @@ export const publications: Publication[] = [
     year: 2015,
     doi: '10.1128/genomeA.01431-14',
     pmid: '25635029',
+    impact: 'Sequencing the complete genome of bacteriophage Pollock provides genetic characterization of a therapeutic candidate against enterotoxigenic E. coli, a major cause of traveler\'s diarrhea and childhood mortality in developing regions where multidrug resistance limits treatment options. This genome sequence enables phage therapy development as an alternative to antibiotics for treating E. coli-mediated dysentery and contributes to the genomic database necessary for identifying optimal phage cocktails and understanding host-specificity mechanisms critical for clinical deployment.',
   },
 ];

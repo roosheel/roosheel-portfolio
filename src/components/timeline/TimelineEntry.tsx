@@ -3,11 +3,13 @@
 import { useEffect, useRef, useState } from 'react';
 import { TimelineEntry as TimelineEntryType, EntryType } from '@/types/timeline';
 import EntryCard from './EntryCard';
+import DateRange from './DateRange';
 
 interface TimelineEntryProps {
   entry: TimelineEntryType;
   onOpenModal: () => void;
   showTimeline?: boolean;
+  isSelected?: boolean;
 }
 
 const typeColors: Record<EntryType, string> = {
@@ -18,7 +20,7 @@ const typeColors: Record<EntryType, string> = {
   presentation: 'rgb(20 184 166)'
 };
 
-export default function TimelineEntry({ entry, onOpenModal, showTimeline = true }: TimelineEntryProps) {
+export default function TimelineEntry({ entry, onOpenModal, showTimeline = true, isSelected = false }: TimelineEntryProps) {
   const [isVisible, setIsVisible] = useState(false);
   const entryRef = useRef<HTMLDivElement>(null);
 
@@ -61,23 +63,24 @@ export default function TimelineEntry({ entry, onOpenModal, showTimeline = true 
           <div className="hidden md:flex flex-col items-center w-[120px] flex-shrink-0">
             {/* Date label */}
             <div className="font-mono text-xs uppercase tracking-widest text-gray-500 dark:text-gray-500 mb-4 text-center">
-              {entry.displayDate}
+              <DateRange dateString={entry.displayDate} />
             </div>
 
             {/* Timeline dot */}
             <div
-              className={`relative w-4 h-4 rounded-full border-[3px] flex-shrink-0 transition-all duration-300 ${
+              className={`relative rounded-full border-[3px] flex-shrink-0 transition-all duration-300 ${
                 isVisible ? 'scale-100' : 'scale-80'
-              }`}
+              } ${isSelected ? 'w-6 h-6' : 'w-4 h-4'}`}
               style={{
                 backgroundColor: entry.type === 'education' ? 'transparent' : dotColor,
-                borderColor: dotColor
+                borderColor: dotColor,
+                boxShadow: isSelected ? `0 0 0 4px ${dotColor}40` : 'none'
               }}
             >
-              {/* Pulse effect on visible */}
-              {isVisible && (
+              {/* Pulse effect on visible or selected */}
+              {(isVisible || isSelected) && (
                 <div
-                  className="absolute inset-0 rounded-full animate-ping opacity-75"
+                  className={`absolute inset-0 rounded-full opacity-75 ${isSelected ? 'animate-pulse' : 'animate-ping'}`}
                   style={{ backgroundColor: dotColor }}
                 />
               )}
@@ -90,7 +93,7 @@ export default function TimelineEntry({ entry, onOpenModal, showTimeline = true 
           {/* Date for mobile */}
           <div className="md:hidden mb-4">
             <span className="font-mono text-xs uppercase tracking-widest text-gray-500 dark:text-gray-500">
-              {entry.displayDate}
+              <DateRange dateString={entry.displayDate} />
             </span>
           </div>
 
