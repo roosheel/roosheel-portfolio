@@ -33,7 +33,7 @@ export default function Contact() {
     <Section id="contact" title="Get In Touch">
       <div className="max-w-2xl mx-auto">
         <p className="text-center text-gray-600 dark:text-gray-400 mb-8">
-          I'm always open to discussing new opportunities, collaborations, or research projects.
+          I&apos;m always open to discussing new opportunities, collaborations, or research projects.
           Feel free to reach out!
         </p>
         <div className="grid gap-6 sm:grid-cols-2">

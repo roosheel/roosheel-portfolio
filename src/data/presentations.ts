@@ -8,6 +8,13 @@ export interface Presentation {
 
 export const presentations: Presentation[] = [
   {
+    title: 'PRAME expression as a prognostic biomarker in NSCLC patients treated with immunotherapy',
+    event: 'AACR Annual Meeting',
+    location: 'Chicago, IL',
+    year: 2025,
+    type: 'poster',
+  },
+  {
     title: 'Cell type-specific genetic architecture of complex traits',
     event: 'Evolution and Variation in the Human Genome Workshop',
     location: 'Cold Spring Harbor, NY',

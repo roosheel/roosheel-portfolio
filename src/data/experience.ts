@@ -9,10 +9,12 @@ export interface Experience {
 export const experiences: Experience[] = [
   {
     company: 'TempusAI',
-    position: 'Senior Translational Scientist I',
+    position: 'Senior Translational Scientist II',
     location: 'Chicago, IL (Remote)',
     period: 'Jan 2022 - Present',
     accomplishments: [
+      'Harnessed clinico-genomics database of 8M+ patients to drive impactful research and guide strategies for 20+ pharma/biotech partners',
+      'Led 50+ research projects ranging from patient selection to Phase I consultations, CDx device development, and derisking drug candidates',
       'Designed & developed robust data pipelines for FDA submission-ready analyses, facilitating seamless processing of clinical and multi-modal multi-omic data across diverse cohorts (N~10K patients)',
       'Built and deployed ML models to predict clinical endpoints using multimodal genomics data (WGS, WES, RNA-seq, etc.) in multi-cancer cohorts, enabling precision medicine for clinicians and patients',
       'Collaborate with external partners (pharma/biotech) to identify biomarkers (dMMR, TMB, IHC) and define optimal cutoffs to stratify patients for targeted therapies based on multi-modal genomic profiling and clinical outcomes',
