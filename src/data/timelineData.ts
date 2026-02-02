@@ -56,10 +56,11 @@ const educationEntries: TimelineEntry[] = education.map((edu, idx) => ({
   title: `${edu.degree} in ${edu.field}`,
   organization: edu.institution,
   location: edu.location,
-  summary: [
+  summary: edu.accomplishments || [
     `GPA: ${edu.gpa}`,
     ...(edu.honors ? [`Graduated with ${edu.honors}`] : [])
   ],
+  fullContent: edu.accomplishments,
   metadata: {
     degree: edu.degree,
     field: edu.field,

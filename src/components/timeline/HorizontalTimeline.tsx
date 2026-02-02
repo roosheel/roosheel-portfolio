@@ -20,8 +20,27 @@ export default function HorizontalTimeline({ entries, onEntryClick }: Horizontal
   const [hoveredEntry, setHoveredEntry] = useState<TimelineEntry | null>(null);
   const [mousePosition, setMousePosition] = useState<{ x: number; y: number } | null>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [selectedTypes, setSelectedTypes] = useState<Set<EntryType>>(new Set());
   const sectionRef = useRef<HTMLElement>(null);
   const timelineRef = useRef<HTMLDivElement>(null);
+
+  // Toggle type selection in legend
+  const toggleType = (type: EntryType) => {
+    setSelectedTypes(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(type)) {
+        newSet.delete(type);
+      } else {
+        newSet.add(type);
+      }
+      return newSet;
+    });
+  };
+
+  // Check if entry should be highlighted
+  const isHighlighted = (type: EntryType) => {
+    return selectedTypes.size === 0 || selectedTypes.has(type);
+  };
 
   // Handle entry click - scroll is locked at page level
   const handleEntryClick = (entry: TimelineEntry) => {
@@ -115,10 +134,10 @@ export default function HorizontalTimeline({ entries, onEntryClick }: Horizontal
     return () => observer.disconnect();
   }, []);
 
-  // Get year range
+  // Get year range - 2010 to 2027
   const years = entries.map(e => e.date.getFullYear());
-  const minYear = Math.min(...years);
-  const maxYear = Math.max(...years);
+  const minYear = Math.min(...years, 2010); // Start at 2010
+  const maxYear = Math.max(...years, 2027); // Extend to 2027
   const yearRange = maxYear - minYear + 1;
 
   // Group entries by year and sort chronologically within each year
@@ -297,7 +316,7 @@ export default function HorizontalTimeline({ entries, onEntryClick }: Horizontal
           }}
         >
           <h2 className="font-headline text-5xl md:text-7xl font-black text-gray-900 dark:text-white tracking-tighter mb-4 relative inline-block">
-            TIMELINE OVERVIEW
+            TIMELINE
             {/* Decorative underline */}
             <div
               className="absolute -bottom-2 left-0 h-1 bg-gradient-to-r from-purple-500 via-blue-500 to-emerald-500 transition-all duration-1000 delay-300"
@@ -327,30 +346,15 @@ export default function HorizontalTimeline({ entries, onEntryClick }: Horizontal
               height: '500px'
             }}
           >
-              {/* Main horizontal line - enhanced with gradient and glow */}
-              <div className="absolute top-1/2 left-0 right-0 transition-all duration-500 ease-out">
-                {/* Glow layer */}
-                <div
-                  className="absolute inset-0 blur-sm"
-                  style={{
-                    height: hoveredEntry ? '6px' : '8px',
-                    background: 'linear-gradient(90deg, rgba(139,92,246,0.3) 0%, rgba(59,130,246,0.3) 33%, rgba(16,185,129,0.3) 66%, rgba(245,158,11,0.3) 100%)',
-                    transform: 'translateY(-50%)',
-                    opacity: hoveredEntry ? 0.5 : 0.8
-                  }}
-                />
-                {/* Main line */}
-                <div
-                  className="absolute inset-0"
-                  style={{
-                    height: hoveredEntry ? '2px' : '4px',
-                    background: 'linear-gradient(90deg, rgb(139,92,246) 0%, rgb(59,130,246) 33%, rgb(16,185,129) 66%, rgb(245,158,11) 100%)',
-                    transform: 'translateY(-50%)',
-                    opacity: hoveredEntry ? 0.4 : 1,
-                    boxShadow: hoveredEntry ? 'none' : '0 0 20px rgba(0,0,0,0.1)'
-                  }}
-                />
-              </div>
+              {/* Main horizontal line */}
+              <div
+                className="absolute top-1/2 left-0 right-0 bg-gray-900 dark:bg-white transition-all duration-500 ease-out"
+                style={{
+                  height: hoveredEntry ? '2px' : '4px',
+                  opacity: hoveredEntry ? 0.3 : 1,
+                  transform: 'translateY(-50%)'
+                }}
+              />
 
               {/* Year markers */}
               {Array.from({ length: yearRange }, (_, i) => minYear + i).map((year) => {
@@ -383,6 +387,7 @@ export default function HorizontalTimeline({ entries, onEntryClick }: Horizontal
 
                 const config = typeColors[entry.type];
                 const isHovered = hoveredEntry?.id === entry.id;
+                const highlighted = isHighlighted(entry.type);
 
                 // Vertical offsets based on type
                 // Top: education, career, awards | Bottom: publications, presentations
@@ -423,7 +428,7 @@ export default function HorizontalTimeline({ entries, onEntryClick }: Horizontal
                         left: `${startPosition}%`,
                         width: `${endPosition - startPosition}%`,
                         zIndex: isHovered ? 25 : 10,
-                        opacity: isVisible ? 1 : 0,
+                        opacity: isVisible ? (highlighted ? 1 : 0.2) : 0,
                         transform: isVisible ? 'scale(1)' : 'scale(0.8)',
                         transition: `opacity 0.6s ease-out ${animationDelay}, transform 0.6s ease-out ${animationDelay}`
                       }}
@@ -494,7 +499,7 @@ export default function HorizontalTimeline({ entries, onEntryClick }: Horizontal
                     style={{
                       left: `${position}%`,
                       zIndex: isHovered ? 25 : 10,
-                      opacity: isVisible ? 1 : 0,
+                      opacity: isVisible ? (highlighted ? 1 : 0.2) : 0,
                       transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
                       transition: `opacity 0.5s ease-out ${animationDelay}, transform 0.5s ease-out ${animationDelay}`
                     }}
@@ -550,18 +555,39 @@ export default function HorizontalTimeline({ entries, onEntryClick }: Horizontal
           </div>
         </div>
 
-        {/* Legend - enhanced with better spacing */}
+        {/* Legend - interactive with click to highlight */}
         <div className="mt-4 flex flex-wrap justify-center gap-6 text-xs font-mono">
-          {Object.entries(typeColors).map(([type, config]) => (
-            <div key={type} className="flex items-center gap-2.5 group">
-              <div
-                className={`w-4 h-4 rounded-full ${config.bg} border-2 border-black dark:border-white transition-transform group-hover:scale-125`}
-              />
-              <span className="uppercase tracking-wider text-gray-700 dark:text-gray-300 font-semibold">
-                {config.label}
-              </span>
-            </div>
-          ))}
+          {Object.entries(typeColors).map(([type, config]) => {
+            const isSelected = selectedTypes.has(type as EntryType);
+            const isActive = selectedTypes.size === 0 || isSelected;
+
+            return (
+              <button
+                key={type}
+                onClick={() => toggleType(type as EntryType)}
+                className={`flex items-center gap-2.5 group cursor-pointer transition-all duration-300 px-3 py-2 rounded-lg ${
+                  isSelected
+                    ? 'bg-gray-100 dark:bg-gray-800 scale-105'
+                    : 'hover:bg-gray-50 dark:hover:bg-gray-900'
+                } ${!isActive ? 'opacity-40' : 'opacity-100'}`}
+              >
+                <div
+                  className={`w-4 h-4 rounded-full ${config.bg} border-2 transition-all duration-300 ${
+                    isSelected
+                      ? 'border-black dark:border-white scale-125'
+                      : 'border-black dark:border-white group-hover:scale-110'
+                  }`}
+                />
+                <span className={`uppercase tracking-wider font-semibold transition-colors ${
+                  isSelected
+                    ? 'text-gray-900 dark:text-white'
+                    : 'text-gray-700 dark:text-gray-300'
+                }`}>
+                  {config.label}
+                </span>
+              </button>
+            );
+          })}
         </div>
       </div>
 

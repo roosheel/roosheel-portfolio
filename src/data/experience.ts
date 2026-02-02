@@ -24,18 +24,6 @@ export const experiences: Experience[] = [
     ],
   },
   {
-    company: 'Icahn School of Medicine at Mount Sinai',
-    position: 'Doctoral student',
-    location: 'New York, NY',
-    period: 'Aug 2017 - Jul 2022',
-    accomplishments: [
-      'Developed and validated a novel data-driven method, employing GWAS, single-cell RNA-seq, and bulk RNA-seq analyses, for prioritizing disease-associated cell types across 200+ complex traits and diseases (e.g., Alzheimer\'s, Schizophrenia, Obesity, Diabetes, etc.). This approach is now implemented as a widely-used open-source tool',
-      'Secured $3M+ in extramural funding through effective grant proposals and pilot grant programs',
-      'Performed large-scale integrative genomics analyses of diverse multi-modal datasets (e.g., single-cell/spatial transcriptomics, GWAS) consisting of >500K single cells from post-mortem brains to identify novel therapeutic targets for neuropsychiatric disorders',
-      'Performed QC, normalization, batch correction, dimensionality reduction, clustering, feature selection, differential expression, functional enrichment, trajectory, and cell-cell communication analyses; interpreted results in disease-relevant context',
-    ],
-  },
-  {
     company: 'McGovern Medical School',
     position: 'Research Technician',
     location: 'Houston, TX',

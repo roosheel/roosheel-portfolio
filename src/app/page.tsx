@@ -20,19 +20,34 @@ export default function Home() {
       document.body.style.position = 'fixed';
       document.body.style.top = `-${scrollPositionRef.current}px`;
       document.body.style.width = '100%';
-    } else {
-      // Unlock scroll
+      document.body.style.overflow = 'hidden';
+    } else if (scrollPositionRef.current !== null) {
+      // Unlock scroll - restore after body position is reset
+      const scrollPosition = scrollPositionRef.current;
       document.body.style.position = '';
       document.body.style.top = '';
       document.body.style.width = '';
-      window.scrollTo(0, scrollPositionRef.current);
+      document.body.style.overflow = '';
+
+      // Restore scroll after DOM updates
+      requestAnimationFrame(() => {
+        window.scrollTo({
+          top: scrollPosition,
+          behavior: 'instant' as ScrollBehavior
+        });
+      });
     }
 
     return () => {
       // Cleanup on unmount
-      document.body.style.position = '';
-      document.body.style.top = '';
-      document.body.style.width = '';
+      if (document.body.style.position === 'fixed') {
+        const scrollPosition = scrollPositionRef.current;
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
+        document.body.style.overflow = '';
+        window.scrollTo(0, scrollPosition);
+      }
     };
   }, [selectedEntry]);
 
@@ -41,8 +56,8 @@ export default function Home() {
       <main
         className={`min-h-screen transition-all duration-500 ease-out ${
           selectedEntry
-            ? 'md:mr-[45vw] lg:mr-[35vw] xl:mr-[30vw] scale-[0.85] origin-left'
-            : 'mr-0 scale-100'
+            ? 'md:mr-[45vw] lg:mr-[35vw] xl:mr-[30vw]'
+            : 'mr-0'
         }`}
         style={{
           willChange: selectedEntry ? 'transform, margin' : 'auto',
