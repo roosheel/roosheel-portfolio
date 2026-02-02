@@ -1,23 +1,22 @@
 'use client';
 
-import { useState } from 'react';
 import { TimelineEntry } from '@/types/timeline';
-import TimelineEntry as TimelineEntryComponent from './TimelineEntry';
-import EntryModal from './EntryModal';
+import TimelineEntryComponent from './TimelineEntry';
 import { GraduationCap, Briefcase, FileText } from 'lucide-react';
 
 interface ParallelTimelinesProps {
   educationEntries: TimelineEntry[];
   careerEntries: TimelineEntry[];
   publicationEntries: TimelineEntry[];
+  onEntryClick: (entry: TimelineEntry) => void;
 }
 
 export default function ParallelTimelines({
   educationEntries,
   careerEntries,
-  publicationEntries
+  publicationEntries,
+  onEntryClick
 }: ParallelTimelinesProps) {
-  const [selectedEntry, setSelectedEntry] = useState<TimelineEntry | null>(null);
 
   const timelineColumns = [
     {
@@ -42,8 +41,8 @@ export default function ParallelTimelines({
 
   return (
     <>
-      <section className="relative py-20 px-6 md:px-12">
-        <div className="max-w-7xl mx-auto">
+      <section className="relative py-20 px-6 md:px-12 lg:px-16 xl:px-24">
+        <div className="w-full mx-auto">
           {/* Section header */}
           <div className="text-center mb-20">
             <h2 className="font-headline text-4xl md:text-6xl font-black text-gray-900 dark:text-white tracking-tighter mb-4">
@@ -100,7 +99,7 @@ export default function ParallelTimelines({
                       <div className="lg:pl-8">
                         <TimelineEntryComponent
                           entry={entry}
-                          onOpenModal={() => setSelectedEntry(entry)}
+                          onOpenModal={() => onEntryClick(entry)}
                           showTimeline={false}
                         />
                       </div>
@@ -168,9 +167,6 @@ export default function ParallelTimelines({
           </div>
         </div>
       </section>
-
-      {/* Modal */}
-      <EntryModal entry={selectedEntry} onClose={() => setSelectedEntry(null)} />
     </>
   );
 }

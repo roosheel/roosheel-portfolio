@@ -145,10 +145,10 @@ export const allTimelineEntries: TimelineEntry[] = [
   ...presentationEntries
 ].sort((a, b) => b.date.getTime() - a.date.getTime());
 
-// Separate entries by category for parallel timelines
-export const educationTimeline = educationEntries.sort((a, b) => a.date.getTime() - b.date.getTime());
-export const careerTimeline = [...careerEntries, ...awardEntries, ...presentationEntries].sort((a, b) => a.date.getTime() - b.date.getTime());
-export const publicationTimeline = publicationEntries.sort((a, b) => a.date.getTime() - b.date.getTime());
+// Separate entries by category for parallel timelines (most recent first)
+export const educationTimeline = educationEntries.sort((a, b) => b.date.getTime() - a.date.getTime());
+export const careerTimeline = [...careerEntries, ...awardEntries, ...presentationEntries].sort((a, b) => b.date.getTime() - a.date.getTime());
+export const publicationTimeline = publicationEntries.sort((a, b) => b.date.getTime() - a.date.getTime());
 
 // Get current entries (most recent career + recent publications/awards)
 export const presentEntries = allTimelineEntries.filter(entry => {
