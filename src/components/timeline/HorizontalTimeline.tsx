@@ -319,7 +319,7 @@ export default function HorizontalTimeline({ entries, onEntryClick }: Horizontal
             TIMELINE
             {/* Decorative underline */}
             <div
-              className="absolute -bottom-2 left-0 h-1 bg-gradient-to-r from-purple-500 via-blue-500 to-emerald-500 transition-all duration-1000 delay-300"
+              className="absolute -bottom-2 left-0 h-1 bg-gray-900 dark:bg-white transition-all duration-1000 delay-300"
               style={{
                 width: isVisible ? '100%' : '0%'
               }}
