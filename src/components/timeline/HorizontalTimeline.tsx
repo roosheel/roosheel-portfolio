@@ -23,18 +23,9 @@ export default function HorizontalTimeline({ entries, onEntryClick }: Horizontal
   const sectionRef = useRef<HTMLElement>(null);
   const timelineRef = useRef<HTMLDivElement>(null);
 
-  // Handle click with scroll position preservation
+  // Handle entry click - scroll is locked at page level
   const handleEntryClick = (entry: TimelineEntry) => {
-    // Store current scroll position
-    const currentScrollY = window.scrollY;
-
-    // Call parent handler
     onEntryClick(entry);
-
-    // Restore scroll position after a brief delay to let DOM settle
-    requestAnimationFrame(() => {
-      window.scrollTo({ top: currentScrollY, behavior: 'auto' });
-    });
   };
 
   // Track mouse position for dock-style magnification
@@ -446,7 +437,7 @@ export default function HorizontalTimeline({ entries, onEntryClick }: Horizontal
                           right: 0,
                           height: `${6 * magnificationScale}px`,
                           backgroundColor: `rgba(${config.rgb}, ${isHovered ? 0.9 : 0.7})`,
-                          border: `${Math.max(2, 3 * magnificationScale)}px solid`,
+                          border: `${isHovered ? 2 : 1.5}px solid`,
                           borderColor: isHovered ? 'rgb(0, 0, 0)' : `rgba(${config.rgb}, 1)`,
                           transform: `translateY(-50%)`,
                           transition: mousePosition ? 'all 0.15s ease-out' : 'all 0.3s ease-out',
